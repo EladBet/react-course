@@ -1,0 +1,30 @@
+{
+    "sourceMaps": true,
+    "presets": [
+        [
+            "react"
+        ],
+        [
+            "env",
+            {
+                "modules": false
+            }
+        ]
+    ],
+    "env": {
+        "test": {
+            "plugins": [
+                "transform-es2015-modules-commonjs"
+            ]
+        }
+    },
+    "plugins": [
+        [
+            "transform-object-rest-spread",
+            {
+                "useBuiltIns": true
+            }
+        ],
+        "transform-class-properties"
+    ]
+}

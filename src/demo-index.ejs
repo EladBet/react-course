@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Playbuzz react course</title>
+</head>
+<body>
+<div id="app"></div>
+
+<% for (let file of htmlWebpackPlugin.files.js.filter(x => x.startsWith('/demo'))) { %>
+<script type="text/javascript" src="<%= file %>"></script>
+<% } %>
+<% for (let file of htmlWebpackPlugin.files.js.filter(x => !x.startsWith('/demo'))) { %>
+<script type="text/javascript" src="<%= file %>"></script>
+<script type="text/javascript" src="<%= file.replace('bundle.js', 'svg.bundle.js') %>"></script>
+<% } %>
+</body>
+</html>
