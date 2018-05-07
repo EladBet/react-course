@@ -1,8 +1,9 @@
 const GetData = function () {
     return fetch('http://react-course-resources.playbuzz.com/data-1.json') // Call the fetch function passing the url of the API as a parameter
         .then((resp) => resp.json())
-        .catch(() => {
-            console.log('ERROR Fetching');
+        .catch((error) => {
+            console.log('ERROR GetData', error);
+            throw error;
         });
 };
 
@@ -13,7 +14,8 @@ const Authorized = function () {
         }
     }).then((resp) => resp.json())
         .catch((error) => {
-            console.log('ERROR Fetching');
+            console.log('ERROR Authorized', error);
+            throw error;
         });
 };
 
@@ -34,8 +36,8 @@ const Translate = function (query) {
             return translatedObj.translatedText;
         })
         .catch((error) => {
-            return query
-
+            console.log('Error traslate', error);
+            throw error;
         });
 };
 
