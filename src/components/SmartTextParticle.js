@@ -8,24 +8,23 @@ import Loader from './Loader'
 export default class SmartTextParticle extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            textProps: props,
-            shouldTranslate: GetUrlParam('translate') === 'he'
-        };
+        this.state = props;
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (prevState.shouldTranslate) {
-            Translate(prevState.text).then(translatedText => {
-                prevState.text = translatedText;
-                prevState.isLoading = false;
-                prevState.isRtl = true;
-
-               return prevState;
+    componentDidMount() {
+        if (GetUrlParam('translate') === 'he') {
+            Translate(this.state.text).then(translatedText => {
+                this.setState({
+                    text: translatedText,
+                    isRtl: true,
+                    isLoading: false
+                })
             });
+        } else {
+            this.setState({
+                isLoading: false
+            })
         }
-        prevState.isLoading = false;
-        return prevState;
     }
 
     render() {
@@ -33,7 +32,7 @@ export default class SmartTextParticle extends Component {
             <div>
                 <Header show={this.props.isHeader} source={this.props.backgroundImgUrl}/>
                 <Loader show={this.state.isLoading}/>
-                <TextParticle show={!this.state.isLoading} {...this.state.textProps} />
+                <TextParticle show={!this.state.isLoading} {...this.state} />
                 <Suffix show={this.props.isLast}/>
             </div>
         );
