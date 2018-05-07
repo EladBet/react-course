@@ -1,17 +1,18 @@
-import React, {Component} from 'react';
-import Header from './Header'
-import Suffix from './Suffix'
+import React from 'react';
 
 export default function TextParticle(props) {
+
     return (
         <div>
-            <Header show={props.isHeader} source={props.backgroundImgUrl} />
-            <div style={{fontSize: parseInt(props.fontSize),
+            { props.show &&
+            <div style={{
+                fontSize: parseInt(props.fontSize),
                 color: props.color,
-                direction:props.isRtl ? 'RTL' : 'LTR'}}>
+                direction: props.isRtl ? 'RTL' : 'LTR'
+            }}>
                 {props.text}
             </div>
-            <Suffix show={props.isLast} />
+            }
         </div>
     );
 };
