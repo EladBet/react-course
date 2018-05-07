@@ -8,7 +8,13 @@ import Loader from './Loader'
 export default class SmartTextParticle extends Component {
     constructor(props) {
         super(props);
-        this.state = props;
+        this.state = {
+            isRtl: false,
+            isLoading: false,
+            text: props.text,
+            color: props.color,
+            fontSize: props.fontSize
+        };
     }
 
     componentDidMount() {
