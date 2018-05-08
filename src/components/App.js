@@ -31,6 +31,7 @@ export default class App extends Component {
     render() {
         return (
             <div>
+                <h1>{this.props.ssrData}</h1>
                 <Loader show={this.state.isLoading}/>
                 <SectionList sections={this.state.sections}/>
             </div>

@@ -16,7 +16,7 @@ app.get('/analytics', (req, res) =>{
 
 app.get('/ssr', (req, res) => {
     const html =  ssr.default({
-        html:"I am SSR BITCHES"
+        ssrData:"I am SSR BITCHES"
     });
     res.render('ssr', {
         html,
