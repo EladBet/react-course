@@ -65,14 +65,15 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "ejs": "^2.6.1",
     "lodash-es": "^4.17.8",
     "pb-svg-icons": "git+ssh://git@github.com/playbuzz/svg-icons.git#master",
-    "react": "*",
-    "react-dom": "*",
     "promise-polyfill": "^7.1.0",
     "proptypes": "^1.0.0",
     "pubsub-js": "^1.6.0",
     "quill-delta-to-html": "^0.5.7",
+    "react": "*",
+    "react-dom": "*",
     "unfetch": "^3.0.0"
   }
 }

@@ -2,6 +2,8 @@ const express = require("express");
 const ssr = require('../build/main.ssr.bundle');
 const app = express();
 
+app.set('view engine', 'ejs');
+
 app.get('/analytics', (req, res) =>{
     if(req.headers["authorization"] === "pb-user"){
         res.status(200).json(
@@ -13,8 +15,17 @@ app.get('/analytics', (req, res) =>{
 });
 
 app.get('/ssr', (req, res) => {
-  res.send(ssr.default({}));
+    const html =  ssr.default({
+        html:"I am SSR BITCHES"
+    });
+    res.render('ssr', {
+        html,
+        appUrl:'app.bundle.js'
+    });
 });
+
+app.use(express.static('build'));
+
 
 app.listen(5050, (err)=>{
     if(err){
