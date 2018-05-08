@@ -8,6 +8,9 @@ export default class App extends Component {
         super(props);
 
         this.state = { sections: [], isLoading: true };
+    }
+
+    componentDidMount() {
         GetData().then(sections => {
             // To demonstrate slow loading
             setTimeout(() => {
@@ -18,6 +21,8 @@ export default class App extends Component {
                 })
             }, 2000);
         });
+
+
         // Authorized().then(res => console.log(res))
         //     .then((res) => console.log('TODO getData'))
         //     .catch(err => console.log('app constructor faild on authorized', error));

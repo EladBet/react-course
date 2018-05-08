@@ -1,4 +1,5 @@
 const express = require("express");
+const ssr = require('../build/main.ssr.bundle');
 const app = express();
 
 app.get('/analytics', (req, res) =>{
@@ -9,6 +10,10 @@ app.get('/analytics', (req, res) =>{
     } else {
         res.sendStatus(401);
     }
+});
+
+app.get('/ssr', (req, res) => {
+  res.send(ssr.default({}));
 });
 
 app.listen(5050, (err)=>{
