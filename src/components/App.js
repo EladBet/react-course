@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import SectionList from './SectionsList'
 import {Authorized, GetData} from './DataService'
 import Loader from './Loader'
+import PubSub from 'pubsub-js';
 
 export default class App extends Component {
     constructor(props) {
         super(props);
-
+        PubSub.subscribe('UNKNOWN', ((type ,payload) => console.log('UNKNOWN happened', payload)));
         this.state = { sections: [], isLoading: true };
     }
 
