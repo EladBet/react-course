@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
 import SectionList from './SectionsList'
-import {Authorized, GetData} from './DataService'
+import {Authorized, GetData, ScrollMonitor} from './DataService'
 import Loader from './Loader'
 import PubSub from 'pubsub-js';
 
 export default class App extends Component {
     constructor(props) {
         super(props);
-        PubSub.subscribe('UNKNOWN', ((type ,payload) => console.log('UNKNOWN happened', payload)));
+        PubSub.subscribe('UNKNOWN', ((type, payload) => console.log('UNKNOWN happened', payload)));
+        PubSub.subscribe('SCROLL', ((type, payload) => console.log('Scroll happened', payload)));
         this.state = { sections: [], isLoading: true };
     }
 
     componentDidMount() {
+        var scrollListner = window.addEventListener('scroll', function (e) {
+            PubSub.publish('SCROLL', window.scrollY);
+        });
         GetData().then(sections => {
             // To demonstrate slow loading
             setTimeout(() => {
@@ -37,5 +41,9 @@ export default class App extends Component {
                 <SectionList sections={this.state.sections}/>
             </div>
         );
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', () => console.log('Unmount'));
     }
 }
